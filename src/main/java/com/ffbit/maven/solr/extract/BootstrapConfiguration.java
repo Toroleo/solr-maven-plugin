@@ -21,6 +21,10 @@ public interface BootstrapConfiguration extends SolrVersionConfiguration {
      * @return Apache Solr Home directory.
      */
     File getSolrHome();
+    
+    String getSolrVersion();
+    
+    File getSolrConfDir();
 
     /**
      * Get current Maven Artifact resolver.

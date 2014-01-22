@@ -1,8 +1,8 @@
 package com.ffbit.maven.solr;
 
 import com.ffbit.maven.solr.artefact.ArtifactResolver;
+import com.ffbit.maven.solr.artefact.external.CommonExternalArtifacts;
 import com.ffbit.maven.solr.artefact.external.ExternalArtifacts;
-import com.ffbit.maven.solr.artefact.external.ExternalArtifactsFactory;
 import com.ffbit.maven.solr.extract.BootstrapStrategy;
 import com.ffbit.maven.solr.extract.BootstrapStrategyFactory;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -59,8 +59,7 @@ public abstract class AbstractSolrMojo extends AbstractSolrConfigurationMojo {
     }
 
     private void resolveExternalArtifacts() {
-        ExternalArtifactsFactory factory = new ExternalArtifactsFactory();
-        ExternalArtifacts externalArtifacts = factory.getExternalArtifacts(getSolrVersion());
+        ExternalArtifacts externalArtifacts = new CommonExternalArtifacts(getSolrVersion());
         getArtifactResolver().resolve(externalArtifacts.getArtifacts());
     }
 

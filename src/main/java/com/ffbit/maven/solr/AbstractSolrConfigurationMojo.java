@@ -52,16 +52,18 @@ public abstract class AbstractSolrConfigurationMojo extends AbstractMojo
      *
      * @since 0.0.1
      */
-    @Parameter(defaultValue = "4.3.0")
+    @Parameter(property = "solrVersion", defaultValue = "4.3.0", alias = "solr.solr.version")
     private String solrVersion;
 
+    @Parameter(property = "solrConfDir", defaultValue = "src/main/resources/solr", alias = "solr.conf.dir")
+    private File solrConfDir;
+    
     /**
      * The Apache Solr Home directory.
      *
      * @since 0.0.1
      */
-    @Parameter(property = "solrHome", alias = "solr.solr.home",
-            defaultValue = "${project.build.directory}/solr")
+    @Parameter(property = "solrHome", alias = "solr.solr.home", defaultValue = "${project.build.directory}/solr")
     private File solrHome;
 
     /**
@@ -103,8 +105,7 @@ public abstract class AbstractSolrConfigurationMojo extends AbstractMojo
      *
      * @since 0.0.1
      */
-    @Parameter(defaultValue = "${project.remoteProjectRepositories}",
-            readonly = true)
+    @Parameter(defaultValue = "${project.remoteProjectRepositories}", readonly = true)
     private List<RemoteRepository> remoteRepositories;
 
     public void setRepositorySession(RepositorySystemSession session) {
@@ -175,6 +176,10 @@ public abstract class AbstractSolrConfigurationMojo extends AbstractMojo
     public String getSolrVersion() {
         return solrVersion;
     }
+    
+    public File getSolrConfDir() {
+    	return solrConfDir;
+    }
 
     /**
      * {@inheritDoc}
@@ -218,6 +223,7 @@ public abstract class AbstractSolrConfigurationMojo extends AbstractMojo
         properties.put("java.util.logging.config.file", getLoggingPropertiesPath().getAbsolutePath());
 
         properties.put("solr.solr.home", getSolrHome().getAbsolutePath());
+        properties.put("solr.solr.version", getSolrVersion());
 
         properties.put("maven.local.repository", repositorySession.getLocalRepository().getBasedir().getAbsolutePath());
 

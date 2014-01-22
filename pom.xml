@@ -5,7 +5,7 @@
     <groupId>com.ffbit.maven.plugins</groupId>
     <artifactId>solr-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>0.0.7.2</version>
+    <version>0.0.7.2-TOROLEO-1</version>
 
     <parent>
         <groupId>org.sonatype.oss</groupId>
@@ -13,6 +13,7 @@
         <version>7</version>
         <relativePath/>
     </parent>
+    
 
     <name>Apache Solr Maven Plugin</name>
     <description>
@@ -48,6 +49,15 @@
             <email>dmytro.chyzhykov@gmail.com</email>
             <url>http://ffbit.com/</url>
             <timezone>+3</timezone>
+            <roles>
+                <role>dev</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>ddebray</id>
+            <name>Daniel Debray</name>
+            <email>daniel.debray@googlemail.com</email>
+            <timezone>+1</timezone>
             <roles>
                 <role>dev</role>
             </roles>
@@ -94,9 +104,15 @@
         <maven.version>3.0.5</maven.version>
         <maven.plugin.version>3.2</maven.plugin.version>
         <slf4j.version>1.7.5</slf4j.version>
+        <commons.version>2.4</commons.version>
     </properties>
 
     <dependencies>
+    	<dependency>
+		  	<groupId>commons-io</groupId>
+		  	<artifactId>commons-io</artifactId>
+		  	<version>${commons.version}</version>
+		</dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>

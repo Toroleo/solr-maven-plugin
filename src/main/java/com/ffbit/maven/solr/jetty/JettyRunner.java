@@ -9,6 +9,7 @@ import org.eclipse.jetty.xml.XmlConfiguration;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Start point for Jetty embedded Servlet Container.
@@ -71,6 +72,7 @@ public class JettyRunner {
             for (File xmlFile : getJettyXmlFiles()) {
                 log.info("Configuring Jetty from xml configuration file = " + xmlFile.getCanonicalPath());
                 XmlConfiguration xmlConfiguration = new XmlConfiguration(Resource.toURL(xmlFile));
+                addProperties(xmlConfiguration);
                 xmlConfiguration.configure(server);
             }
         } catch (Exception e) {
@@ -100,4 +102,11 @@ public class JettyRunner {
         return jettyXmlFiles;
     }
 
+    private void addProperties(XmlConfiguration xmlConfiguration) {
+    	for (Map.Entry<String, Object> entry : configuration.getSystemPropertiesToSet().entrySet()) {
+        	if (entry.getValue() != null) {
+        		xmlConfiguration.getProperties().put(entry.getKey(), entry.getValue().toString());
+        	}
+        }
+    }
 }

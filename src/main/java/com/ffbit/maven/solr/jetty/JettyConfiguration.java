@@ -1,5 +1,7 @@
 package com.ffbit.maven.solr.jetty;
 
+import java.util.Map;
+
 /**
  * Represents configuration for running Jetty Server.
  */
@@ -36,5 +38,6 @@ public interface JettyConfiguration {
      *         </ul>
      */
     long getServerWaitingTimeout();
-
+    
+    Map<String, Object> getSystemPropertiesToSet();
 }
